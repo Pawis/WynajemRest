@@ -9,5 +9,6 @@ public interface WynajemService {
 	
 	public Optional<Rezerwacja> dodajRezerwacje(LocalDate poczatek, LocalDate koniec, String wynajmujacy,
 			String najemca, int koszt, String mieszkanie);
-
+	
+	public Rezerwacja zmianaRezerwacji(int id,Rezerwacja rezerwacja);
 }

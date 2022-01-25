@@ -11,9 +11,22 @@ import com.example.WynajemRest.model.Rezerwacja;
 
 @Repository
 public interface RezerwacjeRepo extends CrudRepository<Rezerwacja, Integer> {
-	
-	//@Query(value ="select count(*) from wynajem.Rezerwacja where okres_poczatek <= :poczatek and  okres_koniec >= :koniec ", nativeQuery = true)
-	@Query(value ="select count(*) from Rezerwacja as R join Mieszkanie as M on R.mieszkanie_nazwa=M.id where (R.okres_poczatek <= :poczatek and  R.okres_koniec >= :koniec) and M.nazwa =:MieszkanieNazwa", nativeQuery = true)
-	public int rezerwacja(@Param(value = "poczatek") LocalDate poczatek,
+
+	// @Query(value ="select count(*) from wynajem.Rezerwacja where okres_poczatek
+	// <= :poczatek and okres_koniec >= :koniec ", nativeQuery = true)
+	@Query(value = "select count(*) from Rezerwacja as R join Mieszkanie as M on R.mieszkanie_nazwa=M.id "
+			+ "where (R.okres_poczatek <= :poczatek and  R.okres_koniec >= :koniec) and M.nazwa =:MieszkanieNazwa", nativeQuery = true)
+	public int czyKtosJuzWynajmujeWTymOkresie(@Param(value = "poczatek") LocalDate poczatek,
 			@Param(value = "koniec") LocalDate koniec, @Param(value = "MieszkanieNazwa") String MieszkanieNazwa);
+/*
+	@Query(value = "update Rezerwacja as R set okres_poczatek=:poczatek, okres_koniec=:koniec, WYNAJMUJACA_ID=:wynajmujacy,NAJEMCA_ID=:najemca, koszt=:koszt,mieszkanie_nazwa=:mieszkanieId where id=:id", nativeQuery = true)
+	public Rezerwacja zmianaRezerwacji(@Param(value="id")int id, @Param(value="poczatek")LocalDate poczatek,
+			@Param(value="koniec") LocalDate koniec, @Param(value="wynajmujacy")String wynajmujacy,
+			@Param(value="najemca")String najemca,@Param(value="koszt")int koszt, @Param(value="mieszkanieId")String mieszkanieId);
+	*/
+	@Query(value = "update Rezerwacja as R set okres_poczatek=:poczatek, okres_koniec=:koniec, WYNAJMUJACA_ID=:wynajmujacy,NAJEMCA_ID=:najemca, koszt=:koszt,mieszkanie_nazwa=:mieszkanieId where id=:id", nativeQuery = true)
+	public Rezerwacja zmianaRezerwacji(@Param(value="id")int id, @Param(value="poczatek")LocalDate poczatek,
+			@Param(value="koniec") LocalDate koniec, @Param(value="wynajmujacy")String wynajmujacy,
+			@Param(value="najemca")String najemca,@Param(value="koszt")int koszt, @Param(value="mieszkanieId")String mieszkanieId);
+	
 }

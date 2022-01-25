@@ -39,7 +39,7 @@ public class Rezerwacja {
     @JoinColumn(name="mieszkanie_nazwa")
 	private Mieszkanie mieszkanie_nazwa;
 
-	
+	/*
 	public Mieszkanie getName() {
 		return mieszkanie_nazwa;
 	}
@@ -47,9 +47,20 @@ public class Rezerwacja {
 	public void setName(Mieszkanie name) {
 		this.mieszkanie_nazwa = name;
 	}
-
+*/
 	public Rezerwacja() {
 		
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 
