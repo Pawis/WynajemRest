@@ -11,7 +11,6 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Mieszkanie {
-
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

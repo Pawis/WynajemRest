@@ -1,53 +1,47 @@
 package com.example.WynajemRest.service;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.example.WynajemRest.Repo.MieszkanieRepo;
 import com.example.WynajemRest.Repo.OsobaRepo;
 import com.example.WynajemRest.Repo.RezerwacjeRepo;
-import com.example.WynajemRest.model.Mieszkanie;
-import com.example.WynajemRest.model.Osoba;
 import com.example.WynajemRest.model.Rezerwacja;
 
 @Service
 public class WynajemServiceImpl implements WynajemService {
 
-
+	@Autowired
+	private OsobaRepo osobaRepo;
+	@Autowired
+	private MieszkanieRepo mieszkanieRepo;
 	@Autowired
 	private RezerwacjeRepo rezerwacjaRepo;
-	
-	public void dodajRezerwacje(String poczatek, String koniec,
-			String wynajmujacy,String najemca,int koszt) {
-		
-		LocalDate poczatekOkresu = LocalDate.parse(poczatek);
-		LocalDate koniecOkresu = LocalDate.parse(koniec);
-		
-		
-		Mieszkanie mieszkanie = new Mieszkanie();
-		mieszkanie.setCenaJednostkowa(1000);
-		mieszkanie.setNazwa("Dom");
-		mieszkanie.setPowierzchnia(10);
-		mieszkanie.setOpis("Duzy Dom");
-		Osoba najemcaDamian = new Osoba();
-		najemcaDamian.setNazwa("najemcaDamian");
-		Osoba wynajmujacyKrzysiek = new Osoba();
-		wynajmujacyKrzysiek.setNazwa("wynajmujacyKrzysiek");
-		Rezerwacja rezerwacja = new Rezerwacja();
-		
-		rezerwacja.setNajemca_id(najemcaDamian);
-		rezerwacja.setWynajmujaca_id(wynajmujacyKrzysiek);
-		rezerwacja.setName(mieszkanie);
-		rezerwacja.setKoszt(100);
-		rezerwacja.setOkres_Koniec(LocalDate.of(2000, 1, 2));
-		rezerwacja.setOkres_Poczatek(LocalDate.of(2000, 1, 1));
-		rezerwacja.setMieszkanie_nazwa(mieszkanie);
-		
-		rezerwacjaRepo.save(rezerwacja);
-		
-	}
 
+	@Async
+	public Optional<Rezerwacja> dodajRezerwacje(LocalDate poczatek, LocalDate koniec, String wynajmujacy,
+			String najemca, int koszt, String mieszkanie) {
+
+		System.out.println(rezerwacjaRepo.rezerwacja(poczatek, koniec));
+		Optional<Rezerwacja> rezerwacjaOptional = null;
+		if (rezerwacjaRepo.rezerwacja(poczatek, koniec) == 0 ) {
+			Rezerwacja rezerwacja = new Rezerwacja();
+			rezerwacja.setOkres_Poczatek(poczatek);
+			rezerwacja.setOkres_Koniec(koniec);
+			rezerwacja.setNajemca_id(osobaRepo.findByName(najemca));
+			rezerwacja.setWynajmujaca_id(osobaRepo.findByName(wynajmujacy));
+			rezerwacja.setMieszkanie_nazwa(mieszkanieRepo.findByName(mieszkanie));
+			rezerwacja.setKoszt(koszt);
+			rezerwacjaOptional = Optional.of(rezerwacjaRepo.save(rezerwacja));
+		} else
+			return Optional.empty();
+
+		return rezerwacjaOptional;
+
+	}
 
 }

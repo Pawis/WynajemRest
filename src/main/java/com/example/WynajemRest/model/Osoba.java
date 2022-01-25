@@ -27,6 +27,7 @@ public class Osoba {
 
 	public Osoba() {
 	}
+	
 
 	public String getNazwa() {
 		return nazwa;

@@ -13,10 +13,6 @@ public class WynajemRestApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(WynajemRestApplication.class, args);
 		
-		Mieszkanie mieszkanie = new Mieszkanie();
-		Osoba osoba1 = new Osoba();
-		Osoba osoba2 = new Osoba();
-		Rezerwacja rezerwacja = new Rezerwacja();
 	}
 
 }
