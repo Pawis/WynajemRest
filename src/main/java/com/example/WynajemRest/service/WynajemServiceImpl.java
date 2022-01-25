@@ -26,9 +26,9 @@ public class WynajemServiceImpl implements WynajemService {
 	public Optional<Rezerwacja> dodajRezerwacje(LocalDate poczatek, LocalDate koniec, String wynajmujacy,
 			String najemca, int koszt, String mieszkanie) {
 
-		System.out.println(rezerwacjaRepo.rezerwacja(poczatek, koniec));
+		System.out.println(rezerwacjaRepo.rezerwacja(poczatek, koniec,mieszkanie));
 		Optional<Rezerwacja> rezerwacjaOptional = null;
-		if (rezerwacjaRepo.rezerwacja(poczatek, koniec) == 0 ) {
+		if (rezerwacjaRepo.rezerwacja(poczatek, koniec,mieszkanie) == 0 ) {
 			Rezerwacja rezerwacja = new Rezerwacja();
 			rezerwacja.setOkres_Poczatek(poczatek);
 			rezerwacja.setOkres_Koniec(koniec);
