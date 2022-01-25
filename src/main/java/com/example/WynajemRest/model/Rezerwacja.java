@@ -1,13 +1,9 @@
 package com.example.WynajemRest.model;
 
-import java.sql.Date;
 import java.time.LocalDate;
-import java.util.Optional;
 
-import javax.persistence.AttributeConverter;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Converter;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
