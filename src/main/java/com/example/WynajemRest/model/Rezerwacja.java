@@ -1,13 +1,20 @@
 package com.example.WynajemRest.model;
 
+import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Optional;
 
+import javax.persistence.AttributeConverter;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Converter;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Rezerwacja {
@@ -16,23 +23,26 @@ public class Rezerwacja {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private LocalDate okresPoczatek;
+	@Column(name = "okres_Poczatek")
+	private LocalDate okres_Poczatek;
 	
-	private LocalDate okresKoniec;
+	@Column(name = "okres_Koniec")
+	private LocalDate okres_Koniec;
 
-	@ManyToOne
-    @JoinColumn(name="mieszkania", nullable=false)
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+    @JoinColumn(name="wynajmujaca_id")
 	private Osoba wynajmujaca_id;
 	
-	@ManyToOne
-    @JoinColumn(name="rezerwacjeOsoby", nullable=false)
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+    @JoinColumn(name="Najemca_id")
 	private Osoba Najemca_id;
 
 	private int koszt;
 	
-	@ManyToOne
-    @JoinColumn(name="rezerwacjeMieszkania", nullable=false)
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+    @JoinColumn(name="mieszkanie_nazwa")
 	private Mieszkanie mieszkanie_nazwa;
+
 	
 	public Mieszkanie getName() {
 		return mieszkanie_nazwa;
@@ -46,20 +56,21 @@ public class Rezerwacja {
 		
 	}
 
-	public LocalDate getOkresNajmuPoczatek() {
-		return okresPoczatek;
+
+	public LocalDate getOkres_Poczatek() {
+		return okres_Poczatek;
 	}
 
-	public void setOkresNajmuPoczatek(LocalDate okresNajmuPoczatek) {
-		this.okresPoczatek = okresNajmuPoczatek;
+	public void setOkres_Poczatek(LocalDate okres_Poczatek) {
+		this.okres_Poczatek = okres_Poczatek;
 	}
 
-	public LocalDate getOkresNajmuKoniec() {
-		return okresKoniec;
+	public LocalDate getOkres_Koniec() {
+		return okres_Koniec;
 	}
 
-	public void setOkresNajmuKoniec(LocalDate okresNajmuKoniec) {
-		this.okresKoniec = okresNajmuKoniec;
+	public void setOkres_Koniec(LocalDate okres_Koniec) {
+		this.okres_Koniec = okres_Koniec;
 	}
 
 	public Osoba getWynajmujaca_id() {
@@ -84,6 +95,14 @@ public class Rezerwacja {
 
 	public void setKoszt(int koszt) {
 		this.koszt = koszt;
+	}
+
+	public Mieszkanie getMieszkanie_nazwa() {
+		return mieszkanie_nazwa;
+	}
+
+	public void setMieszkanie_nazwa(Mieszkanie mieszkanie_nazwa) {
+		this.mieszkanie_nazwa = mieszkanie_nazwa;
 	}
 
 	

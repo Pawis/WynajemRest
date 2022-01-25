@@ -2,6 +2,7 @@ package com.example.WynajemRest.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,20 +25,10 @@ public class Mieszkanie {
 	
 	private String opis;
 	
-	@OneToMany(mappedBy="mieszkanie_nazwa")
+	@OneToMany(mappedBy="mieszkanie_nazwa", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	private List<Rezerwacja> rezerwacjeMieszkania;
 	
-	private int rezerwacja_id;
-
 	public Mieszkanie() {
-	}
-	
-	public int getRezerwacja() {
-		return rezerwacja_id;
-	}
-
-	public void setRezerwacja(int rezerwacja) {
-		this.rezerwacja_id = rezerwacja;
 	}
 
 	public String getOpis() {
