@@ -1,4 +1,4 @@
-package com.example.WynajemRest;
+package com.example.WynajemRest.expection;
 
 @SuppressWarnings("serial")
 public class RezerwacjaNaTaDateIstnieje extends Exception {

@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-
 @Entity
 public class Rezerwacja {
 
@@ -21,48 +20,35 @@ public class Rezerwacja {
 
 	@Column(name = "okres_Poczatek")
 	private LocalDate okres_Poczatek;
-	
+
 	@Column(name = "okres_Koniec")
 	private LocalDate okres_Koniec;
 
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-    @JoinColumn(name="wynajmujaca_id")
+	@JoinColumn(name = "wynajmujaca_id")
 	private Osoba wynajmujaca_id;
-	
+
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-    @JoinColumn(name="Najemca_id")
+	@JoinColumn(name = "Najemca_id")
 	private Osoba Najemca_id;
 
 	private int koszt;
-	
+
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-    @JoinColumn(name="mieszkanie_nazwa")
+	@JoinColumn(name = "mieszkanie_nazwa")
 	private Mieszkanie mieszkanie_nazwa;
 
-	/*
-	public Mieszkanie getName() {
-		return mieszkanie_nazwa;
-	}
-
-	public void setName(Mieszkanie name) {
-		this.mieszkanie_nazwa = name;
-	}
-*/
 	public Rezerwacja() {
-		
-	}
 
+	}
 
 	public int getId() {
 		return id;
 	}
 
-
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public LocalDate getOkres_Poczatek() {
 		return okres_Poczatek;
@@ -111,7 +97,5 @@ public class Rezerwacja {
 	public void setMieszkanie_nazwa(Mieszkanie mieszkanie_nazwa) {
 		this.mieszkanie_nazwa = mieszkanie_nazwa;
 	}
-
-	
 
 }

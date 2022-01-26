@@ -1,6 +1,7 @@
 package com.example.WynajemRest.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import com.example.WynajemRest.Repo.MieszkanieRepo;
@@ -14,6 +15,7 @@ public class Mapper {
 	@Autowired
 	private OsobaRepo osobaRepo;
 	
+	@Async
 	public Rezerwacja rezerwacjaDTOtoRezerwacja(RezerwacjaDTO rezerwacjaDTO) {
 		
 		Rezerwacja rezerwacja = new Rezerwacja();
