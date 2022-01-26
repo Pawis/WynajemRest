@@ -26,4 +26,7 @@ public interface RezerwacjeRepo extends CrudRepository<Rezerwacja, Integer> {
 	
 	@Query(value ="select * from Rezerwacja as R join Osoba as O on R.najemca_id=O.id where o.nazwa = :nazwa", nativeQuery= true)
 	public List<Rezerwacja> listaRezerwacjiNajemcy(@Param("nazwa") String nazwa);
+	
+	@Query(value = "select * from Rezerwacja as R join Mieszkanie as M on R.mieszkanie_nazwa=M.id where M.nazwa=:nazwa",nativeQuery=true)
+	public List<Rezerwacja> listaRezerwacjiMieszkania(@Param("nazwa") String nazwa);
 }

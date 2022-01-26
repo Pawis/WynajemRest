@@ -55,10 +55,16 @@ public class Controller {
 		}
 		throw new RezerwacjaNaTaDateIstnieje("Rezerwacja w tym okresie czasu juz istnieje");
 	}
-	@GetMapping("najemcy/{nazwa}")
+	@GetMapping("/najemcy/{nazwa}")
 	public List<Rezerwacja> listaRezerwacjiNajemca(@PathVariable String nazwa) {
 		
 		return wynajemService.listaRezerwacjiNajemcy(nazwa);
+	}
+	
+	@GetMapping("/rezerwacjeMieszkania/{nazwa}")
+	public  List<Rezerwacja> listaRezerwacjiMieszkania(@PathVariable String nazwa) {
+		
+		return wynajemService.listaRezerwacjiMieszkania(nazwa);
 	}
 
 }

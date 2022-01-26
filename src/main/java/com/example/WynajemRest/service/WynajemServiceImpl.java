@@ -52,4 +52,13 @@ public class WynajemServiceImpl implements WynajemService {
 		List<Rezerwacja> rezerwacje = rezerwacjaRepo.listaRezerwacjiNajemcy(nazwa);
 		return rezerwacje;
 	}
+
+	@Override
+	public List<Rezerwacja> listaRezerwacjiMieszkania(String nazwa) {
+		
+		List<Rezerwacja> rezerwacje = rezerwacjaRepo.listaRezerwacjiMieszkania(nazwa);
+		return rezerwacje;
+	}
+	
+	
 }

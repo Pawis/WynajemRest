@@ -12,4 +12,6 @@ public interface WynajemService {
 	public Optional<Rezerwacja> zmianaRezerwacji(int id,Rezerwacja rezerwacja);
 	
 	public List<Rezerwacja> listaRezerwacjiNajemcy(String nazwa);
+	
+	public List<Rezerwacja> listaRezerwacjiMieszkania(String nazwa);
 }
