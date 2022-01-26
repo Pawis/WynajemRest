@@ -89,11 +89,11 @@ public class Rezerwacja {
 		this.koszt = koszt;
 	}
 
-	public Mieszkanie getMieszkanie_nazwa() {
+	public Mieszkanie getMieszkanie_id() {
 		return mieszkanie_id;
 	}
 
-	public void setMieszkanie_nazwa(Mieszkanie mieszkanie_id) {
+	public void setMieszkanie_id(Mieszkanie mieszkanie_id) {
 		this.mieszkanie_id = mieszkanie_id;
 	}
 

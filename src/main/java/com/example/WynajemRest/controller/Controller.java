@@ -1,4 +1,4 @@
-package com.example.WynajemRest;
+package com.example.WynajemRest.controller;
 
 import java.util.List;
 import java.util.NoSuchElementException;

@@ -24,7 +24,7 @@ public class Mapper {
 		Mieszkanie mieszkanie = mieszkaieRepo.findByName(rezerwacjaDTO.getMieszkanie());
 		Rezerwacja rezerwacja = new Rezerwacja();
 		rezerwacja.setKoszt((mieszkanie.getCenaJednostkowa() * mieszkanie.getPowierzchnia()) * iloscDni);
-		rezerwacja.setMieszkanie_nazwa(mieszkanie);
+		rezerwacja.setMieszkanie_id(mieszkanie);
 		rezerwacja.setNajemca_id(osobaRepo.findByName(rezerwacjaDTO.getNajemca()));
 		rezerwacja.setWynajmujaca_id(osobaRepo.findByName(rezerwacjaDTO.getWynajmujacy()));
 		rezerwacja.setOkres_Poczatek(rezerwacjaDTO.getOkres_poczatek());

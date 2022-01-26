@@ -15,3 +15,11 @@ insert into mieszkanie (id,nazwa,cena_jednostkowa,powierzchnia,opis) values (2,'
 insert into mieszkanie (id,nazwa,cena_jednostkowa,powierzchnia,opis) values (3,'Willa' ,10000,1000,'Jakas tam willa');
 insert into mieszkanie (id,nazwa,cena_jednostkowa,powierzchnia,opis) values (4,'Palac',100,1000,'Wspanialy palac');
 insert into mieszkanie (id,nazwa,cena_jednostkowa,powierzchnia,opis) values (5,'Karton' ,1,2,'Mokry karton');
+
+/*
+insert into rezerwacja (id,okres_poczatek,okres_koniec,wynajmujaca_id,najemca_id,mieszkanie_id) values (1,'2000-01-01','2000-01-15',1,6,3);
+insert into rezerwacja (id,okres_poczatek,okres_koniec,wynajmujaca_id,najemca_id,mieszkanie_id) values (2,'2000-02-01','2000-02-25',1,6,3);
+insert into rezerwacja (id,okres_poczatek,okres_koniec,wynajmujaca_id,najemca_id,mieszkanie_id) values (3,'2000-01-16','2000-01-20',1,6,3);
+insert into rezerwacja (id,okres_poczatek,okres_koniec,wynajmujaca_id,najemca_id,mieszkanie_id) values (4,'2000-06-01','2000-08-15',1,6,3);
+insert into rezerwacja (id,okres_poczatek,okres_koniec,wynajmujaca_id,najemca_id,mieszkanie_id) values (5,'2000-05-20','2000-06-10',1,6,3);
+*/
