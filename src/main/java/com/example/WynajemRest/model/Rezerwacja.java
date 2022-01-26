@@ -32,14 +32,13 @@ public class Rezerwacja {
 	@JoinColumn(name = "Najemca_id")
 	private Osoba Najemca_id;
 
-	private int koszt;
+	private long koszt;
 
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-	@JoinColumn(name = "mieszkanie_nazwa")
-	private Mieszkanie mieszkanie_nazwa;
+	@JoinColumn(name = "mieszkanie_id")
+	private Mieszkanie mieszkanie_id;
 
 	public Rezerwacja() {
-
 	}
 
 	public int getId() {
@@ -82,20 +81,20 @@ public class Rezerwacja {
 		Najemca_id = najemca_id;
 	}
 
-	public int getKoszt() {
+	public long getKoszt() {
 		return koszt;
 	}
 
-	public void setKoszt(int koszt) {
+	public void setKoszt(long koszt) {
 		this.koszt = koszt;
 	}
 
 	public Mieszkanie getMieszkanie_nazwa() {
-		return mieszkanie_nazwa;
+		return mieszkanie_id;
 	}
 
-	public void setMieszkanie_nazwa(Mieszkanie mieszkanie_nazwa) {
-		this.mieszkanie_nazwa = mieszkanie_nazwa;
+	public void setMieszkanie_nazwa(Mieszkanie mieszkanie_id) {
+		this.mieszkanie_id = mieszkanie_id;
 	}
 
 }

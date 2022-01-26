@@ -14,11 +14,7 @@ public class RezerwacjaDTO {
 	
 	private String wynajmujacy;
 	
-	private int koszt;
-	
 	private String mieszkanie;
-	
-	
 
 	public RezerwacjaDTO() {
 	}
@@ -53,14 +49,6 @@ public class RezerwacjaDTO {
 
 	public void setWynajmujacy(String wynajmujacy) {
 		this.wynajmujacy = wynajmujacy;
-	}
-
-	public int getKoszt() {
-		return koszt;
-	}
-
-	public void setKoszt(int koszt) {
-		this.koszt = koszt;
 	}
 
 	public String getMieszkanie() {

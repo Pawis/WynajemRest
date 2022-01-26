@@ -24,7 +24,7 @@ public class Mieszkanie {
 	
 	private String opis;
 	
-	@OneToMany(mappedBy="mieszkanie_nazwa", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+	@OneToMany(mappedBy="mieszkanie_id", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	private List<Rezerwacja> rezerwacjeMieszkania;
 	
 	public Mieszkanie() {

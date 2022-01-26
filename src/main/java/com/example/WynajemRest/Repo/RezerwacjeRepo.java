@@ -14,7 +14,7 @@ import com.example.WynajemRest.model.Rezerwacja;
 public interface RezerwacjeRepo extends CrudRepository<Rezerwacja, Integer> {
 
 	
-	@Query(value = "select count(*) from Rezerwacja as R join Mieszkanie as M on R.mieszkanie_nazwa=M.id "
+	@Query(value = "select count(*) from Rezerwacja as R join Mieszkanie as M on R.mieszkanie_id=M.id "
 			+ "where (R.okres_poczatek <= :poczatek and  R.okres_koniec >= :koniec) and M.nazwa =:MieszkanieNazwa", nativeQuery = true)
 	public int czyKtosJuzWynajmujeWTymOkresie(@Param(value = "poczatek") LocalDate poczatek,
 			@Param(value = "koniec") LocalDate koniec,
@@ -23,6 +23,6 @@ public interface RezerwacjeRepo extends CrudRepository<Rezerwacja, Integer> {
 	@Query(value ="select * from Rezerwacja as R join Osoba as O on R.najemca_id=O.id where o.nazwa = :nazwa", nativeQuery= true)
 	public List<Rezerwacja> listaRezerwacjiNajemcy(@Param("nazwa") String nazwa);
 	
-	@Query(value = "select * from Rezerwacja as R join Mieszkanie as M on R.mieszkanie_nazwa=M.id where M.nazwa=:nazwa",nativeQuery=true)
+	@Query(value = "select * from Rezerwacja as R join Mieszkanie as M on R.mieszkanie_id=M.id where M.nazwa=:nazwa",nativeQuery=true)
 	public List<Rezerwacja> listaRezerwacjiMieszkania(@Param("nazwa") String nazwa);
 }
