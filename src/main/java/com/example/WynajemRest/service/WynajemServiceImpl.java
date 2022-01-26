@@ -1,5 +1,6 @@
 package com.example.WynajemRest.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,12 @@ public class WynajemServiceImpl implements WynajemService {
 		}
 		return Optional.empty();
 
+	}
+
+	@Override
+	public List<Rezerwacja> listaRezerwacjiNajemcy(String nazwa) {
+		 
+		List<Rezerwacja> rezerwacje = rezerwacjaRepo.listaRezerwacjiNajemcy(nazwa);
+		return rezerwacje;
 	}
 }
