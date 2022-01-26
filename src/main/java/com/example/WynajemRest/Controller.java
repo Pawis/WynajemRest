@@ -12,14 +12,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.WynajemRest.model.Mapper;
 import com.example.WynajemRest.model.Rezerwacja;
+import com.example.WynajemRest.model.RezerwacjaDTO;
 import com.example.WynajemRest.service.WynajemService;
 
 @RestController
 public class Controller {
 
 	@Autowired
-	private WynajemService wynajemService;;
+	private WynajemService wynajemService;
+	
+	@Autowired
+	private Mapper mapper;
 
 	@PostMapping("/post")
 	public Rezerwacja sql(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate poczatekWynajmu,
@@ -35,30 +40,18 @@ public class Controller {
 		throw new RezerwacjaNaTaDateIstnieje("Rezerwacja w tym okresie czasu juz istnieje");
 
 	}
-/*
-	@PutMapping("/update")
-	public Rezerwacja zmianaRezerwacji(@PathVariable int id,
-			@RequestParam(value = "poczatekWynajmu", required = false) LocalDate poczatekWynajmu,
-			@RequestParam(value = "koniecWynajmu", required = false) LocalDate koniecWynajmu,
-			@RequestParam(value = "wynajmujacy", required = false) String wynajmujacy,
-			@RequestParam(value = "najemca", required = false) String najemca,
-			@RequestParam(value = "koszt", required = false) int koszt,
-			@RequestParam(value = "mieszkanie", required = false) String mieszkanie) {
-		
-		
-		
-		wynajemService.zmianaRezerwacji(id, poczatekWynajmu, koniecWynajmu, wynajmujacy, najemca, koszt, mieszkanie);
 
-		return null;
-
-	}
-	*/
 	@PutMapping("/update/{id}")
-	public Rezerwacja zmianaRezerwacji(@PathVariable int id, @RequestBody Rezerwacja rezerwacja) {
+	public Rezerwacja zmianaRezerwacji(@PathVariable int id, @RequestBody RezerwacjaDTO rezerwacjaDTO) throws RezerwacjaNaTaDateIstnieje {
 		
-		Rezerwacja nowaRezerwacja = wynajemService.zmianaRezerwacji(id,rezerwacja);
+		Rezerwacja rezerwacja = mapper.rezerwacjaDTOtoRezerwacja(rezerwacjaDTO);
+		
+		Optional<Rezerwacja> rezerwacjaOpt = wynajemService.zmianaRezerwacji(id, rezerwacja);
+		if (rezerwacjaOpt.isPresent()) {
+			return rezerwacjaOpt.get();
+		}
+		throw new RezerwacjaNaTaDateIstnieje("Rezerwacja w tym okresie czasu juz istnieje");
 
-		return nowaRezerwacja;
 
 	}
 

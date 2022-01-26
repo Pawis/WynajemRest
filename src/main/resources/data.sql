@@ -1,5 +1,5 @@
 
-INSERT INTO OSOBA VALUES (1,'Damian Pabis');
+INSERT INTO OSOBA (id,nazwa) VALUES (1,'Damian Pabis');
 insert into osoba (id,nazwa) values (2,'Adam  Ondra');
 insert into osoba (id,nazwa) values (3,'Tommy Caldwell');
 insert into osoba (id,nazwa) values (4,'Miho Nonaka');

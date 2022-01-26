@@ -59,30 +59,20 @@ public class WynajemServiceImpl implements WynajemService {
 	 * }
 	 */
 	@Override
-	public Rezerwacja zmianaRezerwacji(int id, Rezerwacja nowaRezerwacja) {
-		
-		System.out.println(nowaRezerwacja.getOkres_Koniec());
-		
+	public Optional<Rezerwacja> zmianaRezerwacji(int id, Rezerwacja nowaRezerwacja) {
+
 		Optional<Rezerwacja> rezerwacjaOpt = rezerwacjaRepo.findById(id);
 		Rezerwacja rezerwacja = null;
-System.out.println(id);
-		if (rezerwacjaOpt.isPresent()) {
-			
-			rezerwacja=rezerwacjaOpt.get();
-			rezerwacja.setId(id);
-			rezerwacja.setKoszt(nowaRezerwacja.getKoszt());
-			rezerwacja.setMieszkanie_nazwa(nowaRezerwacja.getMieszkanie_nazwa());
-			rezerwacja.setNajemca_id(nowaRezerwacja.getNajemca_id());
-			rezerwacja.setWynajmujaca_id(nowaRezerwacja.getWynajmujaca_id());
-			rezerwacja.setOkres_Poczatek(nowaRezerwacja.getOkres_Poczatek());
-			rezerwacja.setOkres_Koniec(nowaRezerwacja.getOkres_Koniec());
-			
-			Rezerwacja zaaktualizowanaRezerwacja = rezerwacjaRepo.save(rezerwacja);
-			
-			return zaaktualizowanaRezerwacja;
-		}
 
-		return null;
+		if (rezerwacjaOpt.isPresent()) {
+			rezerwacja = rezerwacjaOpt.get();
+			nowaRezerwacja.setId(rezerwacja.getId());
+			if (rezerwacjaRepo.czyKtosJuzWynajmujeWTymOkresie(nowaRezerwacja.getOkres_Poczatek(),
+					nowaRezerwacja.getOkres_Koniec(), nowaRezerwacja.getMieszkanie_nazwa().getNazwa()) == 0) {
+				return Optional.of(rezerwacjaRepo.save(nowaRezerwacja));
+			} 
+		} 
+		return Optional.empty();
 
 	}
 }

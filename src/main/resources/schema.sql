@@ -1,6 +1,6 @@
 Create schema Wynajem
 use wynajem
-CREATE TABLE Osoba (id int(11) NOT NULL AUTO_INCREMENT, NAZWA varchar(128) DEFAULT NULL, PRIMARY KEY (id) ) 
+CREATE TABLE Osoba (id int(11) NOT NULL AUTO_INCREMENT, NAZWA varchar(128)unique, DEFAULT NULL, PRIMARY KEY (id) ) 
 
 CREATE TABLE mieszkanie(id int(11) NOT NULL AUTO_INCREMENT, nazwa varchar(128) unique, CENA_JEDNOSTKOWA int DEFAULT NULL, powierzchnia int DEFAULT NULL, opis varchar(200) DEFAULT NULL, PRIMARY KEY (id))
 
