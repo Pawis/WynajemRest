@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.WynajemRest.expection.RezerwacjaNaTaDateIstnieje;
 import com.example.WynajemRest.expection.ZlePodanyOkresCzasu;
 import com.example.WynajemRest.model.Mapper;
 import com.example.WynajemRest.model.Rezerwacja;
@@ -29,7 +28,7 @@ public class Controller {
 	private Mapper mapper;
 
 	@PostMapping("/post")
-	public Rezerwacja sql(@RequestBody RezerwacjaDTO rezerwacjaDTO) {
+	public Rezerwacja tworzenieRezerwacji(@RequestBody RezerwacjaDTO rezerwacjaDTO) {
 
 		if (rezerwacjaDTO.getOkres_koniec().isBefore(rezerwacjaDTO.getOkres_poczatek())) {
 			throw new ZlePodanyOkresCzasu("Zle podany okres wynajmu");
