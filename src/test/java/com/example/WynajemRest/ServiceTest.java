@@ -14,7 +14,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.example.WynajemRest.Repo.RezerwacjeRepo;
-import com.example.WynajemRest.expection.RezerwacjaNaTaDateIstnieje;
 import com.example.WynajemRest.model.Mieszkanie;
 import com.example.WynajemRest.model.Osoba;
 import com.example.WynajemRest.model.Rezerwacja;
@@ -76,7 +75,7 @@ public class ServiceTest {
 				"Dom")).thenReturn(1);
 		
 		
-		assertThrows(RezerwacjaNaTaDateIstnieje.class,() -> wynajemServiceImpl.dodajRezerwacje(rezerwacja));
+		assertThrows(IllegalArgumentException.class,() -> wynajemServiceImpl.dodajRezerwacje(rezerwacja));
 		
 		
 	}

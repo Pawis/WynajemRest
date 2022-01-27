@@ -13,7 +13,7 @@ public class GlobalExpectionHandler  {
 	
 	
 	@ExceptionHandler
-	public ResponseEntity<ErrorResponse> handleException(RezerwacjaNaTaDateIstnieje exc) {
+	public ResponseEntity<ErrorResponse> handleException(IllegalArgumentException exc) {
 
 		ErrorResponse error = new ErrorResponse();
 
@@ -22,18 +22,7 @@ public class GlobalExpectionHandler  {
 
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
-	
-	@ExceptionHandler
-	public ResponseEntity<ErrorResponse> handleException(ZlePodanyOkresCzasu exc) {
 
-		ErrorResponse error = new ErrorResponse();
-
-		error.setStatus(HttpStatus.BAD_REQUEST.value());
-		error.setMessage(exc.getMessage());
-
-		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
-	}
-	
 	@ExceptionHandler
 	public ResponseEntity<ErrorResponse> handleException(NoSuchElementException exc) {
 

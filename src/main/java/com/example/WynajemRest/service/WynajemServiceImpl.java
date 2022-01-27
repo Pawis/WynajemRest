@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.example.WynajemRest.Repo.RezerwacjeRepo;
-import com.example.WynajemRest.expection.RezerwacjaNaTaDateIstnieje;
 import com.example.WynajemRest.model.Rezerwacja;
 
 @Service
@@ -25,7 +24,7 @@ public class WynajemServiceImpl implements WynajemService {
 
 			return rezerwacjaRepo.save(rezerwacja);
 		} else
-			throw new RezerwacjaNaTaDateIstnieje("Rezerwacja w tym okresie czasu juz istnieje");
+			throw new IllegalArgumentException("Rezerwacja w tym okresie czasu juz istnieje");
 
 	}
 
@@ -42,7 +41,7 @@ public class WynajemServiceImpl implements WynajemService {
 					nowaRezerwacja.getOkres_Koniec(), nowaRezerwacja.getMieszkanie_id().getNazwa()) == 0) {
 				return Optional.of(rezerwacjaRepo.save(nowaRezerwacja));
 			} else
-				throw new RezerwacjaNaTaDateIstnieje("Rezerwacja w tym okresie czasu juz istnieje");
+				throw new IllegalArgumentException("Rezerwacja w tym okresie czasu juz istnieje");
 		}
 		return Optional.empty();
 

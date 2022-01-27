@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.WynajemRest.expection.ZlePodanyOkresCzasu;
 import com.example.WynajemRest.model.Mapper;
 import com.example.WynajemRest.model.Rezerwacja;
 import com.example.WynajemRest.model.RezerwacjaDTO;
@@ -31,7 +30,7 @@ public class Controller {
 	public Rezerwacja tworzenieRezerwacji(@RequestBody RezerwacjaDTO rezerwacjaDTO) {
 
 		if (rezerwacjaDTO.getOkres_koniec().isBefore(rezerwacjaDTO.getOkres_poczatek())) {
-			throw new ZlePodanyOkresCzasu("Zle podany okres wynajmu");
+			throw new IllegalArgumentException("Zle podany okres wynajmu");
 		}
 
 		Rezerwacja rezerwacja = mapper.rezerwacjaDTOtoRezerwacja(rezerwacjaDTO);

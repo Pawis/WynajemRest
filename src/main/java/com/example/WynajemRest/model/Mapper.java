@@ -4,12 +4,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import javax.naming.NameNotFoundException;
-import javax.security.auth.login.AccountNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
-import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
