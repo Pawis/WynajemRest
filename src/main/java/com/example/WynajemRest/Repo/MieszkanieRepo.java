@@ -1,5 +1,7 @@
 package com.example.WynajemRest.Repo;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -11,5 +13,5 @@ import com.example.WynajemRest.model.Mieszkanie;
 public interface MieszkanieRepo extends CrudRepository<Mieszkanie, Integer>{
 
 	@Query("from Mieszkanie where nazwa=:nazwa")
-	public Mieszkanie findByName(@Param("nazwa")String nazwa); 
+	public Optional<Mieszkanie> findByName(@Param("nazwa")String nazwa); 
 }
