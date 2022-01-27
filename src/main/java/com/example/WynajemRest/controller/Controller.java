@@ -29,8 +29,7 @@ public class Controller {
 	private Mapper mapper;
 
 	@PostMapping("/post")
-	public Rezerwacja sql(@RequestBody RezerwacjaDTO rezerwacjaDTO)
-			throws RezerwacjaNaTaDateIstnieje, ZlePodanyOkresCzasu {
+	public Rezerwacja sql(@RequestBody RezerwacjaDTO rezerwacjaDTO) {
 
 		if (rezerwacjaDTO.getOkres_koniec().isBefore(rezerwacjaDTO.getOkres_poczatek())) {
 			throw new ZlePodanyOkresCzasu("Zle podany okres wynajmu");
@@ -44,8 +43,7 @@ public class Controller {
 	}
 
 	@PutMapping("/update/{id}")
-	public Rezerwacja zmianaRezerwacji(@PathVariable int id, @RequestBody RezerwacjaDTO rezerwacjaDTO)
-			throws RezerwacjaNaTaDateIstnieje {
+	public Rezerwacja zmianaRezerwacji(@PathVariable int id, @RequestBody RezerwacjaDTO rezerwacjaDTO){
 
 		Rezerwacja rezerwacja = mapper.rezerwacjaDTOtoRezerwacja(rezerwacjaDTO);
 
